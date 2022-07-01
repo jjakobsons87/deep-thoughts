@@ -2,7 +2,7 @@
 const { gql } = require('apollo-server-express');
 
 // create out typeDefs
-// helloWorld is hte query name, returning data that will be a string 
+// thoughts is the query name, with the option to pass in a username as a string to search by a user name 
 const typeDefs = gql`
     type Thought {
         _id: ID
@@ -13,7 +13,7 @@ const typeDefs = gql`
     }
 
 type Query {
-        thoughts: [Thought]
+        thoughts(username: String): [Thought]
     }
 `;
 
