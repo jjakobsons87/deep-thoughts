@@ -20,9 +20,23 @@ const typeDefs = gql`
         username: String
     }
 
+    type User {
+        _id: ID
+        username: String
+        email: String
+        friendCount: Int
+        thoughts: [Thought]
+        friends: [User]
+    }
+
     type Query {
+        users: [User]
+        user(username: String!): User
         thoughts(username: String): [Thought]
+        thought(_id: ID!): Thought
     }
 `;
+// four different query types: all users, by username, thoughts by username, thoughts by id
+// the ! in the query means it is required - so user(username:String!) must have a username in the query to return data 
 
 module.exports = typeDefs;
