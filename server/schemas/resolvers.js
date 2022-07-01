@@ -1,7 +1,9 @@
+const { User, Thought: Thought } = require('../models');
+
 const resolvers = {
     Query: {
-        helloWorld: () => {
-            return 'Hello World!';
+        thoughts: async () => {
+            return Thought.find().sort({ createAt: -1 });
         }
     }
 };
