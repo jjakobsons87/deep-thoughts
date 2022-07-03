@@ -1,5 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+// for verifying JWT/authentication  s
+const { authMiddleware } = require('./utils/auth');
 
 // import out typeDefs and resolvers 
 const { typeDefs, resolvers } = require('./schemas');
@@ -9,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 // create a new Apollo server and pass in our schema data 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: authMiddleware
 });
 
 const app = express();
@@ -20,7 +23,7 @@ app.use(express.json());
 // Create a new instance of an Apollo server with the GraphQL schema 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  // integrate out Apollo server with the Express applicaiton as middleware
+  // integrate out Apollo server with the Express application as middleware
   server.applyMiddleware({ app });
 
   db.once('open', () => {
@@ -32,5 +35,5 @@ const startApolloServer = async (typeDefs, resolvers) => {
   })
 };
 
-// call the async funciton to start the server
+// call the async function to start the server
 startApolloServer(typeDefs, resolvers);

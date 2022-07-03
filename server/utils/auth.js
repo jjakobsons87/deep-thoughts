@@ -10,6 +10,7 @@ module.exports = {
         return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
     },
 
+    // this ensures requests are performing an auth request and checking for a valid JWT 
     authMiddleware: function({ req }) {
         // allows tol=ken to be sent via req.body, req.query, or headers
         let token = req.body.token || req.query.token || req.headers.authorization;
