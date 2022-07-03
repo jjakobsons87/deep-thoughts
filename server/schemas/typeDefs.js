@@ -35,6 +35,11 @@ const typeDefs = gql`
         thoughts(username: String): [Thought]
         thought(_id: ID!): Thought
     }
+
+    type Mutation {
+        login(email: String!, password: String!): User
+        addUser(username: String!, email: String!, password: String!): User
+    }
 `;
 // four different query types: all users, by username, thoughts by username, thoughts by id
 // the ! in the query means it is required - so user(username:String!) must have a username in the query to return data 
