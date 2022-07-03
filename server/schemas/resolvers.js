@@ -66,7 +66,7 @@ const resolvers = {
                 const thought = await Thought.create({ ...args,  username: context.user.username });
 
                 await User.findByIdAndUpdate(
-                    { _id: conext.user._id },
+                    { _id: context.user._id },
                     { $push: { thoughts: thought._id } },
                     { new: true }
                 );
