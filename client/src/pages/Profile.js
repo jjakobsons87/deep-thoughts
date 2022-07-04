@@ -6,6 +6,7 @@ import FriendList from '../components/FriendList';
 import Auth from '../utils/auth';
 import { Navigate, useParams } from 'react-router-dom';
 import { ADD_FRIEND } from '../utils/mutations';
+import ThoughtForm from '../components/ThoughtForm';
 
 
 const Profile = () => {
